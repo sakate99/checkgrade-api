@@ -22,11 +22,11 @@ router.get('/', async(req, res) => {
     })
   })
   // /api/student/id/555
-router.get('/code/:code', async(req, res) => {
+router.get('/code/:code?', async(req, res) => {
     try {
       let db = req.db
       let rows = await db('grade')
-        .where('code', '=', req.params.code)
+        .where('code', '=', req.query.code)
       res.send({
         ok: true,
         student: rows || {},
