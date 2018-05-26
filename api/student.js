@@ -29,7 +29,7 @@ router.get('/code/:code?', async(req, res) => {
         .where('code', '=', req.query.code)
       res.send({
         ok: true,
-        student: rows || {},
+        grades: rows || {},
       })
     } catch (e) {
       res.send({
