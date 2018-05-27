@@ -22,6 +22,25 @@ router.get('/', async(req, res) => {
     })
   })
   // /api/student/id/555
+router.get('/semes', async(req, res) => {
+  try {
+    let db = req.db
+    let rows = await db('semes')
+      .select()
+      .where('semes', '!=', '')
+    res.send({
+      ok: true,
+      semeses: rows || {},
+    })
+  } catch (e) {
+    res.send({
+      ok: false,
+      error: e.message
+    })
+
+  }
+
+})
 router.get('/code/:code?', async(req, res) => {
     try {
       let db = req.db
